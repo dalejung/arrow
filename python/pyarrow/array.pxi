@@ -684,7 +684,7 @@ cdef class _PandasConvertible(_Weakrefable):
             bint strings_to_categorical=False,
             bint zero_copy_only=False,
             bint integer_object_nulls=False,
-            bint date_as_object=True,
+            bint date_as_object=False,
             bint timestamp_as_object=False,
             bint use_threads=True,
             bint deduplicate_objects=True,
@@ -1620,7 +1620,7 @@ cdef _array_like_to_pandas(obj, options, types_mapper):
     name = obj._name
 
     # ARROW-3789(wesm): Convert date/timestamp types to datetime64[ns]
-    c_options.coerce_temporal_nanoseconds = True
+    # c_options.coerce_temporal_nanoseconds = True
 
     if isinstance(obj, Array):
         with nogil:
