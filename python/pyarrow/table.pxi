@@ -2581,7 +2581,7 @@ def table_to_blocks(options, Table table, categories, extension_columns):
                                        for col in extension_columns}
 
     # ARROW-3789(wesm); Convert date/timestamp types to datetime64[ns]
-    c_options.coerce_temporal_nanoseconds = True
+    # c_options.coerce_temporal_nanoseconds = True
 
     if c_options.self_destruct:
         # Move the shared_ptr, table is now unsafe to use further

@@ -40,8 +40,8 @@ cdef dict _pandas_type_map = {
     _Type_HALF_FLOAT: np.float16,
     _Type_FLOAT: np.float32,
     _Type_DOUBLE: np.float64,
-    _Type_DATE32: np.dtype('datetime64[ns]'),
-    _Type_DATE64: np.dtype('datetime64[ns]'),
+    _Type_DATE32: np.dtype('datetime64[s]'),
+    _Type_DATE64: np.dtype('datetime64[s]'),
     _Type_TIMESTAMP: np.dtype('datetime64[ns]'),
     _Type_DURATION: np.dtype('timedelta64[ns]'),
     _Type_BINARY: np.object_,
@@ -50,6 +50,14 @@ cdef dict _pandas_type_map = {
     _Type_LIST: np.object_,
     _Type_MAP: np.object_,
     _Type_DECIMAL128: np.object_,
+}
+
+# https://github.com/pandas-dev/pandas/issues/49060
+cdef dict _pandas_timestamp_type_map = {
+    's': np.dtype('datetime64[s]'),
+    'ms': np.dtype('datetime64[ms]'),
+    'us': np.dtype('datetime64[us]'),
+    'ns': np.dtype('datetime64[ns]'),
 }
 
 cdef dict _pep3118_type_map = {
@@ -686,7 +694,7 @@ cdef class TimestampType(DataType):
         Return the equivalent NumPy / Pandas dtype.
         """
         if self.tz is None:
-            return _pandas_type_map[_Type_TIMESTAMP]
+            return _pandas_timestamp_type_map[self.unit]
         else:
             # Return DatetimeTZ
             from pyarrow.pandas_compat import make_datetimetz
