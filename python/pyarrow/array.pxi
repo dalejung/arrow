@@ -691,7 +691,7 @@ cdef class _PandasConvertible(_Weakrefable):
             bint strings_to_categorical=False,
             bint zero_copy_only=False,
             bint integer_object_nulls=False,
-            bint date_as_object=True,
+            bint date_as_object=False,
             bint timestamp_as_object=False,
             bint use_threads=True,
             bint deduplicate_objects=True,
