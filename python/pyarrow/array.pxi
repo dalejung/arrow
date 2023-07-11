@@ -723,7 +723,7 @@ cdef class _PandasConvertible(_Weakrefable):
             bint strings_to_categorical=False,
             bint zero_copy_only=False,
             bint integer_object_nulls=False,
-            bint date_as_object=True,
+            bint date_as_object=False,
             bint timestamp_as_object=False,
             bint use_threads=True,
             bint deduplicate_objects=True,
@@ -753,7 +753,7 @@ cdef class _PandasConvertible(_Weakrefable):
             the underlying data.
         integer_object_nulls : bool, default False
             Cast integers with nulls to objects
-        date_as_object : bool, default True
+        date_as_object : bool, default False
             Cast dates to objects. If False, convert to datetime64 dtype with
             the equivalent time unit (if supported). Note: in pandas version
             < 2.0, only datetime64[ns] conversion is supported.
