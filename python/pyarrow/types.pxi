@@ -63,14 +63,6 @@ cdef dict _pandas_type_map = {
     _Type_DECIMAL128: np.object_,
 }
 
-# https://github.com/pandas-dev/pandas/issues/49060
-cdef dict _pandas_timestamp_type_map = {
-    's': np.dtype('datetime64[s]'),
-    'ms': np.dtype('datetime64[ms]'),
-    'us': np.dtype('datetime64[us]'),
-    'ns': np.dtype('datetime64[ns]'),
-}
-
 cdef dict _pep3118_type_map = {
     _Type_INT8: b'b',
     _Type_INT16: b'h',
